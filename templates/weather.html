@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='weather.css')}}">
-    <title>Document</title>
+    <title>FarmCare</title>
     <style>
         body{
             background: #0F2027;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+        }
+        .text a{
+            color: black;
+            border-bottom: 5px solid black;
         }
     </style>
 </head>
@@ -22,7 +25,6 @@ background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+
             <li><a href="/">Home</a></li>
             <li><a href="/services">Services</a></li>
             <li><a href="/weather">Weather</a></li>
-            <li><a href="/login">Login</a></li>
             <li><a href="/about">About Us</a></li>
         </nav>
     </header>

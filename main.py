@@ -1,3 +1,5 @@
+import time
+
 from flask import Flask, render_template, request, redirect
 import requests
 import configparser
@@ -5,7 +7,7 @@ import pymysql
 pymysql.install_as_MySQLdb()
 from flask_mysqldb import MySQL
 import yaml
-
+from datetime import datetime
 app = Flask(__name__)
 
 db = yaml.full_load(open('db.yaml'))
@@ -34,15 +36,16 @@ def results():
     country_code=request.form['CountryCode']
     if(zip_code.isnumeric() and country_code.isalpha()):
         data = get_weather(zip_code, country_code, get_api())
-        seconds = data["dt"]
+        date = data["dt"]
+        local_time = time.ctime(date)
         place = data["name"]
         temp = "{0:.2f}".format(data["main"]["temp"])
         weather = data["weather"][0]["description"]
-        rain = data["rain"]
-        humidity = data["humidity"]
-        speed = data["speed"]
+        pressure = data["main"]["pressure"]
+        humidity = data["main"]["humidity"]
+        speed = data["wind"]["speed"]
 
-        return render_template('results.html', place=place, temp=temp, weather=weather, rain=rain, humidity=humidity,speed=speed)
+        return render_template('results.html', place=place, temp=temp, weather=weather, local_time=local_time, pressure=pressure, humidity=humidity, speed=speed)
     else:
         return "Error"
 
